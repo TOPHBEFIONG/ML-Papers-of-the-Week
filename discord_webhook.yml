@@ -1,0 +1,17 @@
+name: Discord Webhook
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Runs every hour; adjust as needed
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Send to Discord
+        uses: rjstone/discord-webhook-notify@v1.0.3
+        with:
+          url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          title: 'New Update in ML-Papers-of-the-Week!'
+          description: 'Check out the latest updates in the ML-Papers-of-the-Week repository.'
